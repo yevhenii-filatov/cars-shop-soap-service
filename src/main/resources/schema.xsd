@@ -1,0 +1,87 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/carsshop"
+           xmlns:tns="http://example.com/carsshop"
+           elementFormDefault="qualified">
+
+    <xs:complexType name="Car">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="price" type="xs:int"/>
+            <xs:element name="mark" type="Mark"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Mark">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="mark" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Client">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="age" type="xs:int"/>
+            <xs:element name="phone" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Order">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="carId" type="xs:long"/>
+            <xs:element name="client" type="Client"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetCarByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetCarByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="car" type="tns:Car"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllCarsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cars" type="tns:Car" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetOrderByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetOrderByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="order" type="tns:Order"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllOrdersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orders" type="tns:Order" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
